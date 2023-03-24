@@ -80,6 +80,13 @@ export const transformDate = (date: string, count: Map<string, number>) => {
 
 export const findTask = (state: TaskState, id: number) =>
   state.activeTasks.findIndex((task) => task.id === id)
+
+export const getCompletionTime = (taskDuration: string, timeLeft: number) => {
+  const durationInSeconds = parseInt(taskDuration) * 60
+  const completionTime = Math.floor((durationInSeconds - timeLeft) / 60)
+  return completionTime.toString()
+}
+
 export const getColorChip = (status: string) => {
   switch (status) {
     case 'active':

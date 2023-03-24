@@ -1,7 +1,7 @@
 .card {
   display: grid;
   gap: 0.5rem;
-  grid-template-columns: 1fr repeat(3, auto);
+  grid-template-columns: 1fr repeat(4, auto);
   justify-content: flex-start;
   background-color: #fff6f6;
   border: 1px solid #bababa;
