@@ -4,10 +4,17 @@ import { VictoryChart, VictoryLine, VictoryTheme, VictoryAxis } from 'victory'
 import { transformDate } from '../Utils/utilFunctions'
 import { Task } from '../Interfaces/Task'
 
+/**ProductivityGraph.tsx - Representa una grafica basada en la cantidad de tareas completadas en una fecha.
+ * Recibe la lista de tareas completadas y tomamos la fecha de creacion de cada una.
+ * Se usa un contador Map() para la cantidad de tareas por fecha.
+ * Se usa la libreria Victory para representar una grafica de linea
+ */
+
 const ProductivityGraph = ({ tasks }: { tasks: Task[] }) => {
   const count = new Map<string, number>()
+  if (tasks) tasks.map((task) => transformDate(task.creationDate, count))
   let dates: { x: string; y: number }[] = []
-  tasks.map((task) => transformDate(task.creationDate, count))
+
   for (const [key, value] of count) {
     dates = [...dates, { x: key, y: value }]
   }

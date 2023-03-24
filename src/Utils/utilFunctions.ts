@@ -1,5 +1,9 @@
 import { TaskState } from '../Interfaces/Task'
 
+/** Funciones de utilidad que se utilizan en distintas partes de la aplicacion
+ * Son helpers que sencillos que retornan un valor y evitar mucha logica en los demas archivos.
+ */
+
 export const generateTasks = (numberOfTasks: number) => {
   const titles = [
     'Comprar comida',

@@ -18,6 +18,12 @@ import './TaskCard.css'
 import { useTimer } from '../Hooks'
 import { getColorChip, getLabelStatus } from '../Utils/utilFunctions'
 
+/**TaskCard.tsx - Muestra la informacion de la tarea (titulo, limite de tiempo, su estado), asi como los botones para el manejo de esta
+ * Cada boton maneja un cambio de estado que se envia mediante los dispatch en la TaskList.tsx y se actualiza el estado en Redux
+ * Se establece un timer de acuerdo a la duracion de la tarea, esto se realiza con la ayuda de un custom hook 'useTimer.ts'
+ * Este hook nos regresa una funcion y el tiempo restante de la tarea. Mas info en [Hooks/useTimer.ts]
+ */
+
 const TaskCard = ({
   task,
   modifiedTask,

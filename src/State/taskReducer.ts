@@ -6,6 +6,12 @@ import {
   getCompletionTime,
 } from '../Utils/utilFunctions'
 
+/**taskReducer.ts - El reducer de la aplicacion, aqui se guarda el estado y las acciones.
+ * InitialState: es un objeto con dos listas, completadas y activas. Cada una se representan como su nombre lo indica.
+ * tasksActions: es un Slice de redux que permite manejar multiples acciones, reducers y permite alterar el estado inicial,
+ * de una manera muy sencilla y practica toda la logica de las acciones que se usan en toda la aplicacion se encuentra aqui.
+ */
+
 const initialState = {
   completedTasks: generateTasks(50),
   activeTasks: [],

@@ -8,6 +8,21 @@ import { useDragAndDrop } from '../Hooks'
 import { TaskHistory, Modal } from '../Containers'
 import './TaskHistory.css'
 
+/** TaskList.tsx - Representa la lista de tareas, asi como un pequeño formulario para crear o editar la tarea
+ * Aqui se empieza a utilizar las acciones y el reducer que viene de parte de Redux:
+ * addTask: Agrega una nueva tarea al final de la lista.
+ * updateTask: Esta funcion establece un cambio de estado de la tarea, segun el estado de cada tarea se realiza una accion diferente
+ * editTask: Simplemente actualiza la tarea que se edito
+ *
+ * Agregue un custom hook 'useDragAndDrop' y como su nombre lo indica ayudaa reordenar la lista de tareas en el momento
+ * que arrastremos una y la cambiemos de posicion. Solo le pasamos nuestra lista de tareas
+ * y con eso realiza toda la logica. [Hooks/useDragAndDrop]
+ *
+ * TaskForm.tsx solo es un pequeño formulario para agregar las tareas. Mas info en [Components/TaskForm.tsx]
+ * List y TaskCard representan la informacion de cada una de las tareas. Mas info en [Components/TaskCard.tsx]
+ * El Modal representa la informacion de las tareas completadas y una grafica de progreso. Mas info en [TaskHistory.tsx]
+ */
+
 const TaskList = ({
   modal,
 }: {

@@ -2,6 +2,11 @@ import React from 'react'
 import { Task } from '../Interfaces/Task'
 import { taskActions, useAppDispatch } from './../State/Store'
 
+/**useDragAndDrop.ts - Es un custom hook que representa la interaccion del usuario al querer arrastrar una TaskCard
+ * Esto ayuda a reordenar la lista cada vez que se mueven por el usuario.
+ * Recibe la lista original de tareas, cuando se cambian el orden actualiza la lista y retorna la nueva lista para mostrarla
+ */
+
 export const useDragAndDrop = (taskList: Task[]) => {
   const { updateOrder } = taskActions
   const [draggingTask, setDraggingTask] = React.useState<Task>({
