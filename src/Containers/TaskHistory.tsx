@@ -4,6 +4,12 @@ import { ProductivityGraph, TaskCard } from '../Components'
 import { Box, Button, Typography } from '@mui/material'
 import './TaskHistory.css'
 
+/**TaskHistiry.tsx - En este archivo se representa el componente del Modal, la lista de tareas completadas y la grafica.
+ * Modal: es un portal de React que presenta informacion proporcionada como hijo-children.
+ * History: es la lista de tareas completadas, se utiliza el mismo componente de TaskCard.tsx
+ * ProductivityGraph: es la representacion de cuantas tareas fueron completadas en una determinada fecha.
+ */
+
 export const Modal = ({
   onClose,
   children,

@@ -4,6 +4,12 @@ import React from 'react'
 import { FormState } from '../Interfaces/Task'
 import './TaskForm.css'
 
+/**TaskForm.tsx - Muestra el formulario de creacion o edicion de una tarea.
+ * Titulo: es el titulo o nombre de la tarea.
+ * Select: representa un selector con valores predeterminados (30, 45, 60), y un valor adicional para un tiempo custom.
+ * CustomTime: es un tiempo en minutos perzonalizado a un maximo de 120 (2 horas)
+ */
+
 const TaskForm = ({
   handleSubmit,
   formState,
@@ -40,7 +46,7 @@ const TaskForm = ({
           <option value="30">30 minutos</option>
           <option value="45">45 minutos</option>
           <option value="60">1 hora</option>
-          <option value="other">Other value</option>
+          <option value="other">Perzonalizado</option>
         </select>
       </div>
       <div>

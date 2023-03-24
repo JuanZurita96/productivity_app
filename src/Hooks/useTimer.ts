@@ -1,6 +1,11 @@
 import React from 'react'
 import { Task } from '../Interfaces/Task'
 
+/**useTimer.ts - customhooks para la representacion de un temporizador basado en la duracion de la tarea.
+ * Solo se activa cuando el estado de la tarea se encuentra en curso.
+ * Va disminuyendo de 1 segundo hasta los 0:00:00
+ */
+
 export const useTimer = (task: Task) => {
   const [timeLeft, setTimeLeft] = React.useState(parseInt(task.duration) * 60)
   const [timerOn, setTimerOn] = React.useState(false)

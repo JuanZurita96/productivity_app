@@ -14,3 +14,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     </Provider>
   </React.StrictMode>
 )
+
+/** Aplicacion de productividad
+ * Lista de tareas donde puedes crear, modificar y completar las tareas en un tiempo asignado
+ * Redux - MaterialUI - Victory - Vite - TypeScript
+ */

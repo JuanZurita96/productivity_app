@@ -7,6 +7,13 @@ import {
 import { Restore, FormatListBulletedSharp } from '@mui/icons-material'
 import { TaskList } from './Containers'
 
+/** La primera parte de la aplicacion consta de un contenedor que a su vez representa una
+ * seccion de navegacion para ver entre la lista de tareas y el historial.
+ * Aqui se presenta el primer Container llamado -TaskList- que es donde se ejecuta la mayor parte de la logica
+ * para las tareas. [Containers/TaskList.tsx].
+ * Ademas tenemos una pequeña funcion para mostrar un modal que sirve para el historial.
+ */
+
 function App() {
   const [showModal, setShowModal] = React.useState(false)
 
