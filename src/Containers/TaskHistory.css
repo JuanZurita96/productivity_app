@@ -1,0 +1,49 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.5);
+}
+.content {
+  width: 90%;
+  height: 98vh;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  background-color: white;
+  box-shadow: rgb(0 0 0 / 24%) 0 3px 8px;
+  margin: auto;
+}
+
+.information {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.task {
+  height: 75vh;
+  overflow: auto;
+}
+
+.task::-webkit-scrollbar,
+.task::-webkit-scrollbar:vertical {
+  -webkit-appearance: none;
+  width: 4px;
+}
+
+.task::-webkit-scrollbar-button:increment,
+.task::-webkit-scrollbar-button {
+  display: none;
+}
+
+.task::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+  border: 0.5px solid rgba(0, 0, 0, 0.1);
+}
+
+.task::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
