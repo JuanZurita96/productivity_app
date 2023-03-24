@@ -9,7 +9,7 @@ export const useDragAndDrop = (taskList: Task[]) => {
     status: 'wait',
     title: '',
     duration: '',
-    timerLeft: '',
+    timerLeft: 0,
     creationDate: '',
     completionTime: '',
   })
@@ -49,7 +49,7 @@ export const useDragAndDrop = (taskList: Task[]) => {
       status: 'wait',
       title: '',
       duration: '',
-      timerLeft: '',
+      timerLeft: 0,
       creationDate: '',
       completionTime: '',
     })

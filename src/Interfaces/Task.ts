@@ -3,7 +3,7 @@ export interface Task {
   status: 'active' | 'paused' | 'stopped' | 'completed' | 'wait'
   title: string
   duration: string
-  timerLeft?: string
+  timerLeft?: number
   creationDate: string
   completionTime: string
 }

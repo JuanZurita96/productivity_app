@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { TaskState } from '../Interfaces/Task'
-import { findTask, generateTasks } from '../Utils/utilFunctions'
+import {
+  findTask,
+  generateTasks,
+  getCompletionTime,
+} from '../Utils/utilFunctions'
 
 const initialState = {
   completedTasks: generateTasks(50),
@@ -57,6 +61,10 @@ const tasksActions = createSlice({
               ...taskComplete,
               id: state.completedTasks.length + 1,
               status: 'completed',
+              completionTime: getCompletionTime(
+                payload.task.duration,
+                payload.task.timerLeft
+              ),
             },
           ]
           break

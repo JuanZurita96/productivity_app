@@ -115,7 +115,7 @@ const TaskList = ({
         />
       )}
       <List className="task">
-        {!loader ? (
+        {!loader && taskList.length > 0 ? (
           result.map((task) => (
             <Box
               component="div"

@@ -7,7 +7,13 @@ import {
   ListItemIcon,
   Chip,
 } from '@mui/material'
-import { PlayArrow, Pause, RestartAlt, EditSharp } from '@mui/icons-material'
+import {
+  PlayArrow,
+  Pause,
+  RestartAlt,
+  EditSharp,
+  CheckCircleOutlineTwoTone,
+} from '@mui/icons-material'
 import './TaskCard.css'
 import { useTimer } from '../Hooks'
 import { getColorChip, getLabelStatus } from '../Utils/utilFunctions'
@@ -32,6 +38,19 @@ const TaskCard = ({
           overflow: 'hidden',
         }}
       />
+      {task.status === 'active' ? (
+        <Chip
+          label="Completar tarea"
+          onClick={() =>
+            modifiedTask?.({
+              task: { ...task, status: 'completed', timerLeft: timeLeft },
+              id: task.id,
+            })
+          }
+          icon={<CheckCircleOutlineTwoTone />}
+          variant="outlined"
+        />
+      ) : null}
       {task.status === 'completed' ? (
         <ListItemText primary={`Completada en: ${task.completionTime}min`} />
       ) : (
