@@ -1,6 +1,7 @@
 import { Box, Button, ButtonGroup } from '@mui/material'
 import { SaveAs, Cancel } from '@mui/icons-material'
 import React from 'react'
+import { FormState } from '../Interfaces/Task'
 import './TaskForm.css'
 
 const TaskForm = ({
@@ -9,25 +10,16 @@ const TaskForm = ({
 }: {
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void
   formState: {
-    values: {
-      title: string
-      timeLimit: string
-      customTimeLimit: string | null
-    }
-    setter: React.Dispatch<
-      React.SetStateAction<{
-        title: string
-        timeLimit: string
-        customTimeLimit: string | null
-      }>
-    >
-    activeForm: (state: boolean) => void
+    values: FormState
+    setter: React.Dispatch<React.SetStateAction<FormState>>
+    activeForm: () => void
   }
 }) => (
   <form onSubmit={handleSubmit}>
     <Box component="div" className="newTask">
       <div>
         <input
+          autoFocus
           type="text"
           placeholder="Titulo:"
           value={formState.values.title}
@@ -53,10 +45,12 @@ const TaskForm = ({
       </div>
       <div>
         <input
-          type="text"
+          type="number"
           disabled={formState.values.timeLimit !== 'other'}
-          placeholder="Agrega cantidad en minutos:"
+          placeholder="Cantidad en minutos:"
           value={formState.values.customTimeLimit ?? ''}
+          max={120}
+          onKeyPress={(e) => !/[0-9.]/.test(e.key) && e.preventDefault()}
           onChange={({ target }) =>
             formState.setter((prev) => ({
               ...prev,
@@ -70,7 +64,7 @@ const TaskForm = ({
         <Button type="submit">
           <SaveAs />
         </Button>
-        <Button onClick={() => formState.activeForm(false)}>
+        <Button onClick={formState.activeForm}>
           <Cancel />
         </Button>
       </ButtonGroup>
