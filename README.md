@@ -27,7 +27,6 @@ src:
  
  
  Proceso que faltaron:
-  Filtrado de tareas por tiempo
   Mantener el estado de la aplicacion con la lista de tareas ---- Por ende no se mantiene el temporizador al cerrar la App
   
 
