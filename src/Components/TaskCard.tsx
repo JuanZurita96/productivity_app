@@ -33,7 +33,7 @@ const TaskCard = ({
   modifiedTask?: (payload: { task: Task; id: number }) => void
   editTask?: (task: Task) => void
 }) => {
-  const { formatTime, timeLeft } = useTimer(task)
+  const { formatTime, timeLeft } = useTimer(task, modifiedTask)
   return (
     <Box component="div" className="card">
       <ListItemText
@@ -58,7 +58,7 @@ const TaskCard = ({
         />
       ) : null}
       {task.status === 'completed' ? (
-        <ListItemText primary={`Completada en: ${task.completionTime}min`} />
+        <ListItemText primary={`Completada en: ${task.completionTime}`} />
       ) : (
         <ListItemText primary={`Límite: ${formatTime(timeLeft)}`} />
       )}

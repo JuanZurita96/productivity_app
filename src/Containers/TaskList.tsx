@@ -1,7 +1,17 @@
 import React from 'react'
 import { useAppSelector, useAppDispatch, taskActions } from '../State/Store'
 import { TaskCard, TaskForm } from '../Components'
-import { Box, Button, List, Alert } from '@mui/material'
+import {
+  Box,
+  Button,
+  List,
+  Alert,
+  InputLabel,
+  Select,
+  MenuItem,
+  FormControl,
+  SelectChangeEvent,
+} from '@mui/material'
 import { AddBox } from '@mui/icons-material'
 import { Task, FormState } from '../Interfaces/Task'
 import { useDragAndDrop } from '../Hooks'
@@ -41,9 +51,10 @@ const TaskList = ({
     timeLimit: '',
     customTimeLimit: null,
   })
+  const [filterTask, setFilterTask] = React.useState('')
   const dispatch = useAppDispatch()
   const { result, handleDragEnd, handleDragOver, handleDragStart } =
-    useDragAndDrop(taskList)
+    useDragAndDrop(taskList, filterTask)
 
   const saveTask = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -106,6 +117,10 @@ const TaskList = ({
     modal.setShowModal(false)
   }
 
+  const handleChangeFilter = (event: SelectChangeEvent) => {
+    setFilterTask(event.target.value)
+  }
+
   React.useEffect(() => {
     if (taskList.length > 0) setLoader(false)
   }, [result])
@@ -113,12 +128,34 @@ const TaskList = ({
   return (
     <Box component="div" alignContent="flex-start" margin=".5rem">
       {!showForm ? (
-        <Button
-          onClick={() => setShowForm(true)}
-          sx={{ margin: '1rem 0', textTransform: 'none' }}
-        >
-          <AddBox sx={{ marginRight: '.2rem' }} /> Agregar nueva tarea
-        </Button>
+        <>
+          <Button
+            onClick={() => setShowForm(true)}
+            sx={{ margin: '1rem 0', textTransform: 'none' }}
+          >
+            <AddBox sx={{ marginRight: '.2rem' }} /> Agregar nueva tarea
+          </Button>
+          <FormControl
+            variant="standard"
+            sx={{ ml: '50%', mb: 0.5, minWidth: 120 }}
+          >
+            <InputLabel id="filter-select-label">Filtro</InputLabel>
+            <Select
+              labelId="filter-select-label"
+              id="filter-select"
+              value={filterTask}
+              onChange={handleChangeFilter}
+              label="Filtro"
+            >
+              <MenuItem value="">
+                <em>Limpiar</em>
+              </MenuItem>
+              <MenuItem value={30}>Menor a 30min</MenuItem>
+              <MenuItem value={45}>Entre 30min y 60min</MenuItem>
+              <MenuItem value={60}>Mas de 60min</MenuItem>
+            </Select>
+          </FormControl>
+        </>
       ) : (
         <TaskForm
           handleSubmit={saveTask}
@@ -148,11 +185,9 @@ const TaskList = ({
             </Box>
           ))
         ) : (
-          <Box>
-            <Alert severity="warning">
-              No tienes tareas pendientes, agrega algunas.
-            </Alert>
-          </Box>
+          <Alert severity="warning">
+            No tienes tareas pendientes, agrega algunas.
+          </Alert>
         )}
       </List>
       {modal.showModal && (

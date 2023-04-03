@@ -31,11 +31,12 @@ export const generateTasks = (numberOfTasks: number) => {
     const getCompletionTime = (time: number) => {
       const timeLimitPerTask = time * 60
       const minValueToComplete = timeLimitPerTask * 0.8
-      return `${Math.floor(
-        (Math.random() * (timeLimitPerTask - minValueToComplete + 1) +
-          minValueToComplete) /
-          60
-      )}`
+      const hours = Math.floor(minValueToComplete / 3600)
+      const minutes = Math.floor((minValueToComplete % 3600) / 60)
+      const remainingSeconds = minValueToComplete % 60
+      return `${hours > 0 ? hours + ' h ' : ''}${minutes.toString()} min y ${
+        remainingSeconds > 0 ? remainingSeconds.toString() + ' sec' : ''
+      }`
     }
 
     const newTask = {
@@ -87,8 +88,13 @@ export const findTask = (state: TaskState, id: number) =>
 
 export const getCompletionTime = (taskDuration: string, timeLeft: number) => {
   const durationInSeconds = parseInt(taskDuration) * 60
-  const completionTime = Math.floor((durationInSeconds - timeLeft) / 60)
-  return completionTime.toString()
+  const completionTime = durationInSeconds - timeLeft
+  const hours = Math.floor(completionTime / 3600)
+  const minutes = Math.floor((completionTime % 3600) / 60)
+  const remainingSeconds = completionTime % 60
+  return `${hours > 0 ? hours + ' h ' : ''}${minutes.toString()} min y ${
+    remainingSeconds > 0 ? remainingSeconds.toString() + ' sec' : ''
+  }`
 }
 
 export const getColorChip = (status: string) => {

@@ -7,7 +7,7 @@ import { taskActions, useAppDispatch } from './../State/Store'
  * Recibe la lista original de tareas, cuando se cambian el orden actualiza la lista y retorna la nueva lista para mostrarla
  */
 
-export const useDragAndDrop = (taskList: Task[]) => {
+export const useDragAndDrop = (taskList: Task[], filterTask: string) => {
   const { updateOrder } = taskActions
   const [draggingTask, setDraggingTask] = React.useState<Task>({
     id: 0,
@@ -20,7 +20,25 @@ export const useDragAndDrop = (taskList: Task[]) => {
   })
   const [orderedTasks, setOrderedTasks] = React.useState<Task[]>()
   const dispatch = useAppDispatch()
-  const result = orderedTasks != undefined ? orderedTasks : []
+  const result =
+    orderedTasks != undefined
+      ? orderedTasks.filter((task) => {
+          switch (parseInt(filterTask)) {
+            case 30:
+              if (parseInt(task.duration) <= 30) return task
+              break
+            case 45:
+              if (parseInt(task.duration) > 30 && parseInt(task.duration) < 60)
+                return task
+              break
+            case 60:
+              if (parseInt(task.duration) >= 60) return task
+              break
+            default:
+              return task
+          }
+        })
+      : []
 
   const handleDragStart = (
     event: React.DragEvent<HTMLDivElement>,

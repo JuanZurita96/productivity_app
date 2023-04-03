@@ -6,7 +6,10 @@ import { Task } from '../Interfaces/Task'
  * Va disminuyendo de 1 segundo hasta los 0:00:00
  */
 
-export const useTimer = (task: Task) => {
+export const useTimer = (
+  task: Task,
+  modifiedTask?: (payload: { task: Task; id: number }) => void
+) => {
   const [timeLeft, setTimeLeft] = React.useState(parseInt(task.duration) * 60)
   const [timerOn, setTimerOn] = React.useState(false)
   const intervalRef = React.useRef(0)
@@ -42,6 +45,10 @@ export const useTimer = (task: Task) => {
       }, 1000)
     } else if (timeLeft === 0) {
       clearInterval(intervalRef.current)
+      modifiedTask?.({
+        task: { ...task, status: 'completed', timerLeft: timeLeft },
+        id: task.id,
+      })
     }
     return () => clearInterval(intervalRef.current)
   }, [timerOn, timeLeft, task])
